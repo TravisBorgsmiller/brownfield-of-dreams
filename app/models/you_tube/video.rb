@@ -7,7 +7,7 @@ module YouTube
     end
 
     def self.by_id(id)
-      new(YoutubeService.new.video_info(id))
+      new(YouTubeService.new.video_info(id))
     end
   end
 end
