@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   def show
-    @repos = GitHub::Repo.list_recent(current_user.gh_token) unless current_user.gh_token.nil?
+    @repos = GitHub::Repo.list_recent(gh_token) if gh_token
   end
 
   def new
