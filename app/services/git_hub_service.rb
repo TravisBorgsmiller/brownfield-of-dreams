@@ -3,13 +3,13 @@ class GitHubService
     @gh_token = gh_token
   end
 
-  def repo_info
+  def repos
     params = { sort: 'updated' }
 
     get_json('/user/repos', params)
   end
 
-  def follower_info
+  def followers
     get_json('/user/followers')
   end
 
