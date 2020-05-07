@@ -2,16 +2,16 @@ module GitHub
   class Repo
     attr_reader :name, :url
 
-    def initialize(data)
-      @name = data[:name]
-      @url = data[:html_url]
+    def initialize(attributes)
+      @name = attributes[:name]
+      @url = attributes[:html_url]
     end
 
     def self.list_recent(gh_token)
-      all_repos = GitHubService.new(gh_token).repo_info
+      repos = GitHubService.new(gh_token).repos
 
-      all_repos[0..4].map do |repo|
-        Repo.new(repo)
+      repos[0..4].map do |repo_hash|
+        Repo.new(repo_hash)
       end
     end
   end

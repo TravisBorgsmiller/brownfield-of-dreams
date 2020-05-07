@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
   def show
     @repos = GitHub::Repo.list_recent(gh_token) if gh_token
+    @followers = GitHub::Follower.list_all(gh_token) if gh_token
+    @following = GitHub::Following.list_all(gh_token) if gh_token
   end
 
   def new
@@ -13,7 +15,7 @@ class UsersController < ApplicationController
       session[:user_id] = @user.id
       redirect_to dashboard_path
     else
-      flash[:error] = 'Username already exists'
+      flash[:error] = @user.errors.full_messages.to_sentence
       render :new
     end
   end
