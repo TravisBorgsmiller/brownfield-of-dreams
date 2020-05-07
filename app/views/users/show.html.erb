@@ -29,6 +29,14 @@
         <% end %>
         </ul>
       </section>
+      <section id="github-following">
+        <h3>Following</h3>
+        <ul>
+        <% @following.each do |follow| %>
+          <li> <%= link_to follow.login, follow.url %>
+        <% end %>
+        </ul>
+      </section>
     <% end %>
   </section>
 </section>
