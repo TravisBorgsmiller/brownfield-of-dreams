@@ -11,6 +11,8 @@ class ApplicationController < ActionController::Base
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
   end
 
+  delegate :gh_token, to: :current_user
+
   def find_bookmark(id)
     current_user.user_videos.find_by(video_id: id)
   end
@@ -22,6 +24,4 @@ class ApplicationController < ActionController::Base
   def four_oh_four
     raise ActionController::RoutingError, 'Not Found'
   end
-
-  delegate :gh_token, to: :current_user
 end
