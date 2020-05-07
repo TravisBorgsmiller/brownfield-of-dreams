@@ -1,10 +1,8 @@
 class UsersController < ApplicationController
   def show
-    if gh_token
-      @repos = GitHub::Repo.list_recent(gh_token)
-      @followers = GitHub::Follower.list(gh_token)
-      @following = GitHub::Following.list(gh_token)
-    end
+    @repos = GitHub::Repo.list_recent(gh_token) if gh_token
+    @followers = GitHub::Follower.list(gh_token) if gh_token
+    @following = GitHub::Following.list(gh_token) if gh_token
   end
 
   def new

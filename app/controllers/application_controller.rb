@@ -23,7 +23,5 @@ class ApplicationController < ActionController::Base
     raise ActionController::RoutingError, 'Not Found'
   end
 
-  def gh_token
-    current_user.gh_token
-  end
+  delegate :gh_token, to: :current_user
 end
