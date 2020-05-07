@@ -51,6 +51,6 @@ describe 'visitor can create an account', :js do
 
     click_on'Create Account'
 
-    expect(page).to have_content('Username already exists')
+    expect(page).to have_content('Email has already been taken')
   end
 end
