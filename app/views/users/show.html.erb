@@ -11,7 +11,7 @@
     <h1>Bookmarked Segments</h1>
   </section>
   <% unless current_user.gh_token.nil? %>
-    <section id="github">
+    <section id="github-repos">
       <h3><%= current_user.first_name %>'s GitHub Repos</h3>
       <ul>
       <% @repos.each do |repo| %>
