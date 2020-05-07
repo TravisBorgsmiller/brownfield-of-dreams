@@ -21,4 +21,8 @@ class ApplicationController < ActionController::Base
   def four_oh_four
     raise ActionController::RoutingError, 'Not Found'
   end
+
+  def gh_token
+    current_user.gh_token
+  end
 end

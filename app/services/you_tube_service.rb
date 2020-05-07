@@ -1,4 +1,4 @@
-class YoutubeService
+class YouTubeService
   def video_info(id)
     params = { part: 'snippet,contentDetails,statistics', id: id }
 
