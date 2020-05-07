@@ -7,7 +7,7 @@ module GitHub
       @url = attributes[:html_url]
     end
 
-    def self.list(gh_token)
+    def self.list_all(gh_token)
       followers = GitHubService.new(gh_token).followers
 
       followers.map do |follower_hash|
