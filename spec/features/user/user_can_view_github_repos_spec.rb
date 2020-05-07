@@ -9,13 +9,16 @@ describe 'A registered user' do
 
     visit dashboard_path
 
-    within('#github-repos') do
-      expect(page).to have_content("#{user.first_name}'s GitHub Repos")
-      expect(page).to have_link('brownfield-of-dreams', href: 'https://github.com/TravisBorgsmiller/brownfield-of-dreams')
-      expect(page).to have_link('monster_shop_final', href: 'https://github.com/alex-latham/monster_shop_final')
-      expect(page).to have_link('here-be-dragons', href: 'https://github.com/alex-latham/here-be-dragons')
-      expect(page).to have_link('neos', href: 'https://github.com/alex-latham/neos')
-      expect(page).to have_link('road_trip', href: 'https://github.com/alex-latham/road_trip')
+    within('#github') do
+      expect(page).to have_content('GitHub')
+      within('#github-repos') do
+        expect(page).to have_content('Repos')
+        expect(page).to have_link('brownfield-of-dreams', href: 'https://github.com/TravisBorgsmiller/brownfield-of-dreams')
+        expect(page).to have_link('monster_shop_final', href: 'https://github.com/alex-latham/monster_shop_final')
+        expect(page).to have_link('here-be-dragons', href: 'https://github.com/alex-latham/here-be-dragons')
+        expect(page).to have_link('neos', href: 'https://github.com/alex-latham/neos')
+        expect(page).to have_link('road_trip', href: 'https://github.com/alex-latham/road_trip')
+      end
     end
   end
 
@@ -25,7 +28,8 @@ describe 'A registered user' do
 
     visit dashboard_path
 
-    expect(page).not_to have_selector('#github-repos')
+    expect(page).to have_selector('#github')
+    expect(page).to have_no_selector('#github-repos')
   end
 
   it 'cannot see other registered users GitHub repos' do
@@ -38,13 +42,17 @@ describe 'A registered user' do
 
     visit dashboard_path
 
-    within('#github-repos') do
-      expect(page).to have_no_content("#{user1.first_name}'s GitHub Repos")
-      expect(page).to have_no_link('brownfield-of-dreams', href: 'https://github.com/TravisBorgsmiller/brownfield-of-dreams')
-      expect(page).to have_no_link('monster_shop_final', href: 'https://github.com/alex-latham/monster_shop_final')
-      expect(page).to have_no_link('here-be-dragons', href: 'https://github.com/alex-latham/here-be-dragons')
-      expect(page).to have_no_link('neos', href: 'https://github.com/alex-latham/neos')
-      expect(page).to have_no_link('road_trip', href: 'https://github.com/alex-latham/road_trip')
+    within('#github') do
+      expect(page).to have_content('GitHub')
+      within('#github-repos') do
+        expect(page).to have_content('Repos')
+        expect(page).to have_no_link('brownfield-of-dreams', href: 'https://github.com/TravisBorgsmiller/brownfield-of-dreams')
+        expect(page).to have_no_link('monster_shop_final', href: 'https://github.com/alex-latham/monster_shop_final')
+        expect(page).to have_no_link('here-be-dragons', href: 'https://github.com/alex-latham/here-be-dragons')
+        expect(page).to have_no_link('neos', href: 'https://github.com/alex-latham/neos')
+        expect(page).to have_no_link('road_trip', href: 'https://github.com/alex-latham/road_trip')
+      end
     end
   end
 end
+
