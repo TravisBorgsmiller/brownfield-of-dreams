@@ -14,10 +14,18 @@
     <h3>GitHub</h3>
     <% if gh_token %>
       <section id="github-repos">
-        <h3><%= current_user.first_name %>'s GitHub Repos</h3>
+        <h3>Repos</h3>
         <ul>
         <% @repos.each do |repo| %>
           <li> <%= link_to repo.name, repo.url %>
+        <% end %>
+        </ul>
+      </section>
+      <section id="github-followers">
+        <h3>Followers</h3>
+        <ul>
+        <% @followers.each do |follower| %>
+          <li> <%= link_to follower.login, follower.url %>
         <% end %>
         </ul>
       </section>
