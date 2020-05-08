@@ -1,5 +1,8 @@
 class UsersController < ApplicationController
-  def show; end
+  def show
+    fascade = GithubFascade.new(current_user)
+    fascade.get_repos
+  end
 
   def new
     @user = User.new
