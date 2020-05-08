@@ -8,7 +8,6 @@ RSpec.describe GitHub::Following, type: :model do
     }
 
     follower = GitHub::Following.new(attributes)
-    require 'pry'; binding.pry
 
     expect(follower).to be_a(GitHub::Following)
     expect(follower.login).to eq("bob")
