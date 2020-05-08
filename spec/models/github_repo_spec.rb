@@ -18,9 +18,9 @@ RSpec.describe GitHub::Repo, type: :model do
   end
 
   it "self.list_recent" do
-    list_all = GitHub::Repo.list_recent(ENV['GITHUB_TOKEN1'])
+    repos = GitHub::Repo.list_recent(ENV['GITHUB_TOKEN1'])
 
-    expect(list_all).to be_a(Array)
-    expect(list_all.first).to be_a(GitHub::Repo)
+    expect(repos).to be_a(Array)
+    expect(repos.first).to be_a(GitHub::Repo)
   end
 end
