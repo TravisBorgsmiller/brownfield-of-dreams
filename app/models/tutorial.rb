@@ -23,6 +23,6 @@ class Tutorial < ApplicationRecord
       )
     end
 
-    return tutorial
+    tutorial
   end
 end
