@@ -3,10 +3,18 @@ class Admin::TutorialsController < Admin::BaseController
     @tutorial = Tutorial.find(params[:id])
   end
 
-  def create; end
+  def create
+    if tutorial_params[:playlist_id]
+      tutorial = Tutorial.import_from_playlist(tutorial_params[:playlist_id])
+      flash[:success] = "Successfully created tutorial.\
+       #{view_context.link_to 'View it here', tutorial_path(tutorial)}."
+      redirect_to admin_dashboard_path
+    end
+  end
 
   def new
     @tutorial = Tutorial.new
+    render :new_import if params[:import] == 'playlist'
   end
 
   def update
@@ -26,6 +34,6 @@ class Admin::TutorialsController < Admin::BaseController
   private
 
   def tutorial_params
-    params.require(:tutorial).permit(:tag_list)
+    params.require(:tutorial).permit(:tag_list, :playlist_id)
   end
 end
