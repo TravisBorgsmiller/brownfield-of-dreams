@@ -3,15 +3,16 @@ require 'rails_helper'
 RSpec.describe "User" do
   before(:each) do
     OmniAuth.config.test_mode = true
-    OmniAuth.config.add_mock(:github, {credentials: {token: 'test_token'}})
+    OmniAuth.config.add_mock(:github, {credentials: {token: 'jiofdjaofoijoqr48rjifiopawifh892'}})
   end
-
+  
   it "can connect to GitHub" do
     user = create(:user)
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
 
     visit dashboard_path
     click_button("Connect to GitHub")
+
     expect(current_path).to eq(dashboard_path)
 
     within('#github') do
