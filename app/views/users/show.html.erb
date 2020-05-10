@@ -37,6 +37,10 @@
         <% end %>
         </ul>
       </section>
+    <% else %>
+      <section id="github-connect">
+        <%= button_to "Connect to GitHub", github_login_path %>
+      </section>
     <% end %>
   </section>
 </section>
