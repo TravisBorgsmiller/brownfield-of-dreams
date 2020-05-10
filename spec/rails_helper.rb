@@ -39,3 +39,19 @@ RSpec.configure do |config|
 
   config.filter_rails_from_backtrace!
 end
+
+def stub_omniauth
+  OmniAuth.config.test_mode = true
+
+  OmniAuth.config.mock_auth[:github] = OmniAuth::AuthHash.new({
+    "provider"=>"github",
+    "uid"=>"37959929",
+    "info"=>
+      {"nickname"=>"TravisBorgsmiller",
+        "email"=>nil,
+        "name"=>"Travis Borgsmiller",
+        "urls"=>{"GitHub"=>"https://github.com/TravisBorgsmiller", "Blog"=>""}},
+    "credentials"=>
+      {"token"=> ENV["GH_OMNI_TOKEN"],
+        "expires"=>false}})
+end
