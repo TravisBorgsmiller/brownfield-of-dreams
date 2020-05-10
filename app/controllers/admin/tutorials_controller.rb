@@ -4,12 +4,12 @@ class Admin::TutorialsController < Admin::BaseController
   end
 
   def create
-    if tutorial_params[:playlist_id]
-      tutorial = Tutorial.import_from_playlist(tutorial_params[:playlist_id])
-      flash[:success] = "Successfully created tutorial.\
-       #{view_context.link_to 'View it here', tutorial_path(tutorial)}."
-      redirect_to admin_dashboard_path
-    end
+    return unless tutorial_params[:playlist_id]
+
+    tutorial = Tutorial.import_from_playlist(tutorial_params[:playlist_id])
+    flash[:success] = "Successfully created tutorial. \
+      #{view_context.link_to 'View it here', tutorial_path(tutorial)}."
+    redirect_to admin_dashboard_path
   end
 
   def new
