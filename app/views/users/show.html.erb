@@ -18,7 +18,7 @@
         <h3>Repos</h3>
         <ul>
         <% @repos.each do |repo| %>
-          <li> <%= link_to repo.name, repo.url %>
+          <li> <%= link_to repo.name, repo.url %> </li>
         <% end %>
         </ul>
       </section>
@@ -26,7 +26,7 @@
         <h3>Followers</h3>
         <ul>
         <% @followers.each do |follower| %>
-          <li> <%= link_to follower.login, follower.url %> | <%= link_to 'Add as Friend', '/replace_this_link' if follower.registered_user? %>
+          <li id="follower-<%= follower.login %>"> <%= link_to follower.login, follower.url %> | <%= link_to 'Add as Friend', '/replace_this_link' if follower.registered_user? %> </li>
         <% end %>
         </ul>
       </section>
@@ -34,7 +34,7 @@
         <h3>Following</h3>
         <ul>
         <% @following.each do |follow| %>
-          <li> <%= link_to follow.login, follow.url %> | <%= link_to 'Add as Friend', '/replace_this_link' if follow.registered_user? %>
+          <li id="following-<%= follow.login %>"> <%= link_to follow.login, follow.url %> | <%= link_to 'Add as Friend', '/replace_this_link' if follow.registered_user? %> </li>
         <% end %>
         </ul>
       </section>
