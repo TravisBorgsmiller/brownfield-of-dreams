@@ -26,7 +26,7 @@
         <h3>Followers</h3>
         <ul>
         <% @followers.each do |follower| %>
-          <li> <%= link_to follower.login, follower.url %>
+          <li> <%= link_to follower.login, follower.url, id: "follower-#{follower.login}" %>
         <% end %>
         </ul>
       </section>
@@ -34,7 +34,7 @@
         <h3>Following</h3>
         <ul>
         <% @following.each do |follow| %>
-          <li> <%= link_to follow.login, follow.url %>
+          <li> <%= link_to follow.login, follow.url, id: "follower-#{follow.login}" %>
         <% end %>
         </ul>
       </section>
