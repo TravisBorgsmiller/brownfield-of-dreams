@@ -2,7 +2,6 @@
   <h1> <%= current_user.first_name %>'s Dashboard </h1>
 
   <%= button_to 'Log Out', logout_path, method: 'delete', class: "btn btn-primary mb1 bg-teal" %>
-  <%= button_to 'Connect to Github', "/auth/github", class: "btn btn-primary mb1 bg-teal" %>
   <h3>Account Details</h3>
   <ul>
     <li> <%= current_user.first_name  %> <%= current_user.last_name %> </li>
@@ -26,7 +25,7 @@
         <h3>Followers</h3>
         <ul>
         <% @followers.each do |follower| %>
-          <li id="follower-<%= follower.login %>"> <%= link_to follower.login, follower.url %> | <%= link_to 'Add as Friend', '/replace_this_link' if follower.registered_user? %> </li>
+          <li id="follower-<%= follower.login %>"> <%= link_to follower.login, follower.url %> | <%= link_to 'Add as Friend', "/friendships/#{follower.id}", method: :post if follower.friendable? %> </li>
         <% end %>
         </ul>
       </section>
@@ -34,10 +33,12 @@
         <h3>Following</h3>
         <ul>
         <% @following.each do |follow| %>
-          <li id="following-<%= follow.login %>"> <%= link_to follow.login, follow.url %> | <%= link_to 'Add as Friend', '/replace_this_link' if follow.registered_user? %> </li>
+          <li id="following-<%= follow.login %>"> <%= link_to follow.login, follow.url %> | <%= link_to 'Add as Friend', '/replace_this_link', method: :post if follow.friendable? %> </li>
         <% end %>
         </ul>
       </section>
+    <% else %>
+      <%= button_to 'Connect to GitHub', github_login_path, class: "btn btn-primary mb1 bg-teal" %>
     <% end %>
   </section>
 </section>
