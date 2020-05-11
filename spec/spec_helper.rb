@@ -1,3 +1,13 @@
+require 'webmock/rspec'
+
+require 'vcr'
+
+VCR.configure do |c|
+  c.cassette_library_dir = 'spec/fixtures'
+  c.hook_into :webmock
+  c.allow_http_connections_when_no_cassette = true
+end
+
 RSpec.configure do |config|
 
   config.before(:suite) do
@@ -32,4 +42,5 @@ RSpec.configure do |config|
   end
 
   config.shared_context_metadata_behavior = :apply_to_host_groups
+
 end
