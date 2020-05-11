@@ -8,8 +8,9 @@ module GitHub
       @uid = attributes[:id]
     end
 
-    def registered_user?
-      ::User.find_by(gh_uid: @uid).present?
+    def friendable?
+      user = User.find_by(gh_uid: @uid)
+      user.present? && user.followers.include?(current_user)
     end
   end
 end
