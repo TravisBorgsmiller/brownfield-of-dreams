@@ -7,10 +7,5 @@ module GitHub
       @url = attributes[:html_url]
       @uid = attributes[:id]
     end
-
-    def friendable?
-      user = User.find_by(gh_uid: @uid)
-      user.present? && user.followers.include?(current_user)
-    end
   end
 end
