@@ -9,6 +9,13 @@ class User < ApplicationRecord
   validates :first_name, presence: true
 
   enum role: { default: 0, admin: 1 }
-  
+
   has_secure_password
+
+  def friendable?(gh_user)
+    user = User.find_by(gh_uid: gh_user.uid)
+    return false if user.nil?
+
+    friends.exclude?(user)
+  end
 end
