@@ -25,7 +25,8 @@
         <h3>Followers</h3>
         <ul>
         <% @followers.each do |follower| %>
-          <li id="follower-<%= follower.login %>"> <%= link_to follower.login, follower.url %> | <%= link_to 'Add as Friend', "/friendships/#{follower.id}", method: :post if follower.friendable? %> </li>
+          <li id="follower-<%= follower.login %>"> <%= link_to follower.login, follower.url %>
+             | <%= link_to 'Add as Friend', friendships_path(gh_uid: follower.uid), method: :post  if current_user.friendable?(follower) %> </li>
         <% end %>
         </ul>
       </section>
@@ -33,7 +34,8 @@
         <h3>Following</h3>
         <ul>
         <% @following.each do |follow| %>
-          <li id="following-<%= follow.login %>"> <%= link_to follow.login, follow.url %> | <%= link_to 'Add as Friend', '/replace_this_link', method: :post if follow.friendable? %> </li>
+          <li id="following-<%= follow.login %>"> <%= link_to follow.login, follow.url %>
+             | <%= link_to 'Add as Friend', friendships_path(gh_uid: follow.uid), method: :post if current_user.friendable?(follow) %> </li>
         <% end %>
         </ul>
       </section>
