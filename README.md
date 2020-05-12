@@ -46,11 +46,11 @@ $ rails db:migrate
 $ rails db:seed
 ```
 
-### Youtube API
+### YouTube API
 
-This project makes use of the Youtube API.
+This project makes use of the YouTube API.
 
-First, obtain an API key by following steps 1 - 3 in [this guide](https://developers.google.com/youtube/v3/getting-started) for the "Before you Start" section. When creating new credentials, make sure you choose the "API Key" option. Make sure that you follow the step to enable the Youtube Data API. Your API key will not work without that step.
+First, obtain an API key by following steps 1 - 3 in [this guide](https://developers.google.com/youtube/v3/getting-started) for the "Before you Start" section. When creating new credentials, make sure you choose the "API Key" option. Make sure that you follow the step to enable the YouTube Data API. Your API key will not work without that step.
 
 Once you have obtained an API key and enabled the API:
 
@@ -66,7 +66,7 @@ You can run the test suite with:
 $ bundle exec rspec
 ```
 
-If set up correctly, and assuming you have internet access and the Youtube API is functioning correctly, you should have all passing tests.
+If set up correctly, and assuming you have internet access and the YouTube API is functioning correctly, you should have all passing tests.
 
 ## Technologies
 * [Stimulus](https://github.com/stimulusjs/stimulus)
