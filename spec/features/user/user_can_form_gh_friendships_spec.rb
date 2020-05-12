@@ -32,7 +32,7 @@ describe 'User' do
   end
 
   it 'can click a link to add a friend' do
-    VCR.use_cassette('can_add_a_link') do
+    VCR.use_cassette('can_click_a_link_to_add_friend') do
       visit dashboard_path
       expect(@alex.friends).to eq([])
 
@@ -50,16 +50,4 @@ describe 'User' do
       expect(@alex.friends).to eq([@travis])
     end
   end
-
-  xit 'cannot send request to add friend if there is no matching gh_uid in system' do
-    visit dashboard_path
-    visit friendships_path(gh_uid: 12345) #how to post in capybara?
-
-    expect(page).to have_content("Unable to find registered user with that GitHub UID")
-  end
 end
-
-
-# request test for capybara post method
-# labeled request type test
-# folder in specs/requests
