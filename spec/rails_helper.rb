@@ -52,6 +52,6 @@ def stub_omniauth
         "name"=>"Travis Borgsmiller",
         "urls"=>{"GitHub"=>"https://github.com/TravisBorgsmiller", "Blog"=>""}},
     "credentials"=>
-      {"token"=> ENV["GH_OMNI_TOKEN"],
+      {"token"=> ENV["GITHUB_TOKEN2"],
         "expires"=>false}})
 end

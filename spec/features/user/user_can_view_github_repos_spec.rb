@@ -49,7 +49,6 @@ feature 'A registered user' do
         expect(page).to have_content('GitHub')
         within('#github-repos') do
           expect(page).to have_content('Repos')
-          expect(page).to have_no_link('brownfield-of-dreams', href: 'https://github.com/TravisBorgsmiller/brownfield-of-dreams')
           expect(page).to have_no_link('monster_shop_final', href: 'https://github.com/alex-latham/monster_shop_final')
           expect(page).to have_no_link('here-be-dragons', href: 'https://github.com/alex-latham/here-be-dragons')
           expect(page).to have_no_link('neos', href: 'https://github.com/alex-latham/neos')
