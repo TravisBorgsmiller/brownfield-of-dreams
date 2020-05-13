@@ -15,6 +15,8 @@ class UsersController < ApplicationController
     @user = User.create(user_params)
     if @user.save
       session[:user_id] = @user.id
+      flash[:success] = "Logged in as #{@user.first_name}"
+      RegistrationMailer.activate(current_user).deliver_now
       redirect_to dashboard_path
     else
       flash[:error] = @user.errors.full_messages.to_sentence
