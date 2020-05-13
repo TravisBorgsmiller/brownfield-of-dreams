@@ -16,7 +16,7 @@ class YouTubeService
     data = get_json('youtube/v3/playlistItems', params)
     return unless data[:nextPageToken]
 
-    paginate_items(params, data)
+    paginate_playlist_items(params, data)
   end
 
   private
@@ -33,7 +33,7 @@ class YouTubeService
     end
   end
 
-  def paginate_items(params, data)
+  def paginate_playlist_items(params, data)
     while data[:nextPageToken]
       params[:pageToken] = data[:nextPageToken]
       next_page_data = get_json('youtube/v3/playlistItems', params)
