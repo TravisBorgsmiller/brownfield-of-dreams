@@ -4,7 +4,7 @@ module GitHub
       followers = GitHubService.new(gh_token).followers
 
       followers.map do |follower_hash|
-        GitHub::User.new(follower_hash)
+        GitHub::Follower.new(follower_hash)
       end
     end
   end

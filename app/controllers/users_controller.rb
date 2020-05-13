@@ -4,7 +4,7 @@ class UsersController < ApplicationController
 
     @repos = GitHub::Repo.list_recent(gh_token)
     @followers = GitHub::Follower.list_all(gh_token)
-    @following = GitHub::Following.list_all(gh_token)
+    @following = GitHub::Follow.list_all(gh_token)
   end
 
   def new
