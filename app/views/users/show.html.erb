@@ -50,5 +50,13 @@
     <% else %>
       <%= button_to 'Connect to GitHub', github_login_path, class: "btn btn-primary mb1 bg-teal" %>
     <% end %>
+    <section id="friends">
+      <h3>Friends</h3>
+      <ul>
+      <% current_user.friends.each do |friend| %>
+        <li><%= friend.first_name %> <%= friend.last_name %></li>
+      <% end %>
+      </ul>
+    </section>
   </section>
 </section>

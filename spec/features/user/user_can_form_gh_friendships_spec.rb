@@ -48,6 +48,10 @@ describe 'User' do
       end
 
       expect(@alex.friends).to eq([@travis])
+
+      within('#friends') do
+        expect(page).to have_content("#{@travis.first_name} #{@travis.last_name}")
+      end
     end
   end
 end
