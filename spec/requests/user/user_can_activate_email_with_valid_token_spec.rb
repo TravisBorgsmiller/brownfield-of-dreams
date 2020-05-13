@@ -15,8 +15,6 @@ RSpec.describe "User", type: :request do
   end
 
   it "cannot activate email with a valid token" do
-    email_token1 = SecureRandom.urlsafe_base64.to_s
-
     user = create(:user, email_token: SecureRandom.urlsafe_base64.to_s)
 
     expect(user.active).to eq(false)
