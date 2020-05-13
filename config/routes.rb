@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  default_url_options host: "localhost"
   namespace :api do
     namespace :v1 do
       resources :tutorials, only:[:show, :index]
@@ -47,4 +48,5 @@ Rails.application.routes.draw do
   end
 
   resources :user_videos, only:[:create, :destroy]
+  post '/registration', to: 'registration#create'
 end
