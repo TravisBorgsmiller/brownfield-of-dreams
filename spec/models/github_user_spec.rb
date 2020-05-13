@@ -7,10 +7,10 @@ RSpec.describe GitHub::User, type: :model do
       html_url: "www.github.com/users/bob"
     }
 
-    follower = GitHub::User.new(attributes)
+    user = GitHub::User.new(attributes)
 
-    expect(follower).to be_a(GitHub::User)
-    expect(follower.login).to eq("bob")
-    expect(follower.url).to eq("www.github.com/users/bob")
+    expect(user).to be_a(GitHub::User)
+    expect(user.login).to eq("bob")
+    expect(user.url).to eq("www.github.com/users/bob")
   end
 end

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  default_url_options host: "localhost"
   namespace :api do
     namespace :v1 do
       resources :tutorials, only:[:show, :index]
@@ -11,7 +12,7 @@ Rails.application.routes.draw do
   get '/register', to: 'users#new'
 
   get '/auth/github', as: :github_login
-  get '/auth/github/callback', to: 'github_sessions#create'
+  get '/auth/github/callback', to: 'git_hub_sessions#create'
 
   resources :friendships, only: [:create]
 
@@ -40,11 +41,18 @@ Rails.application.routes.draw do
   # Is this being used?
   get '/video', to: 'video#show'
 
-  resources :users, only: [:new, :create, :update, :edit]
+  resources :users, only: [:new, :create, :update, :edit] do
+    # member do
+    #   get :confirm_email
+    # end
+  end
+
+  resources :email_activations, only: [:show]
 
   resources :tutorials, only: [:show, :index] do
     resources :videos, only: [:show, :index]
   end
 
   resources :user_videos, only:[:create, :destroy]
+  post '/registration', to: 'registration#create'
 end

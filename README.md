@@ -6,7 +6,7 @@ Project Spec and Evaluation Rubric: https://github.com/turingschool-examples/bro
 
 ### Project Board
 
-Students will continue to build on the existing code base using the cards within the following Github Project: https://github.com/turingschool-examples/brownfield-of-dreams/projects/1
+Students will continue to build on the existing code base using the cards within the following GitHub Project: https://github.com/turingschool-examples/brownfield-of-dreams/projects/1
 
 **Learning Goals and Labels**
 

@@ -1,4 +1,4 @@
-class GithubSessionsController < ApplicationController
+class GitHubSessionsController < ApplicationController
   def create
     current_user.update(gh_token: token, gh_uid: uid)
     redirect_to '/dashboard'

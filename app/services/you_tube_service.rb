@@ -13,8 +13,10 @@ class YouTubeService
 
   def playlist_items(playlist_id)
     params = { part: 'snippet', maxResults: 50, playlistId: playlist_id }
+    data = get_json('youtube/v3/playlistItems', params)
+    return unless data[:nextPageToken]
 
-    get_json('youtube/v3/playlistItems', params)
+    paginate_playlist_items(params, data)
   end
 
   private
@@ -29,5 +31,15 @@ class YouTubeService
       f.adapter Faraday.default_adapter
       f.params[:key] = ENV['YOUTUBE_API_KEY']
     end
+  end
+
+  def paginate_playlist_items(params, data)
+    while data[:nextPageToken]
+      params[:pageToken] = data[:nextPageToken]
+      next_page_data = get_json('youtube/v3/playlistItems', params)
+      data[:items] += next_page_data[:items]
+      data[:nextPageToken] = next_page_data[:nextPageToken]
+    end
+    data
   end
 end

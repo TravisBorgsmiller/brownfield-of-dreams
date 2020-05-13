@@ -1,6 +1,6 @@
 <h1><%= @tutorial.title %></h1>
 <section class="col col-4 p3 border">
-  <h4>Videos (<%= @tutorial.videos.count %>)</h4>
+  <h4>Videos (<%= @tutorial.videos.length %>)</h4>
   <p>Drag and drop to sort. Don't forget to save.</p>
   <div data-controller="tutorials">
     <%= link_to "Save Video Order", "#", "data-action" => "click->tutorials#updateOrder", class: "video-position-submit btn btn-outline", id: @tutorial.id %>

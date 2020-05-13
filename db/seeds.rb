@@ -42,7 +42,7 @@ mod_1_tutorial_data = {
   "description"=>"Videos related to Mod 1.",
   "thumbnail"=>"https://i.ytimg.com/vi/tZDBWXZzLPk/hqdefault.jpg",
   "playlist_id"=>"PL1Y67f0xPzdNsXqiJs1s4NlpI6ZMNdMsb",
-  "classroom"=>false,
+  "classroom"=>true,
 }
 
 m1_tutorial = Tutorial.create! mod_1_tutorial_data
@@ -67,7 +67,7 @@ mod_3_tutorial_data = {
   "description"=>"Video content for Mod 3.",
   "thumbnail"=>"https://i.ytimg.com/vi/R5FPYQgB6Zc/hqdefault.jpg",
   "playlist_id"=>"PL1Y67f0xPzdOq2FcpWnawJeyJ3ELUdBkJ",
-  "classroom"=>false,
+  "classroom"=>true,
   "tag_list"=>["Internet", "BDD", "Ruby"],
 }
 m3_tutorial = Tutorial.create! mod_3_tutorial_data
@@ -116,7 +116,7 @@ m3_tutorial.videos.create!({
 })
 
 User.destroy_all
-User.create!(email: 'admin2@example.com', first_name: 'Da', last_name: 'Baby', password:  "password", role: :admin)
+User.create!(email: 'admin@example.com', first_name: 'Da', last_name: 'Baby', password:  "password", role: :admin)
 User.create!(email: 'alex@example.com', first_name: 'Alex', last_name: 'Latham', password: 'password', gh_token: ENV['GITHUB_TOKEN1'], gh_uid: ENV['GITHUB_UID1'])
 User.create!(email: 'travis@example.com', first_name: 'Travis', last_name: 'Borgsmiller', password: 'password', gh_token: ENV['GITHUB_TOKEN2'], gh_uid: ENV['GITHUB_UID2'])
 

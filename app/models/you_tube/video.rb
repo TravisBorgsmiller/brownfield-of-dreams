@@ -1,12 +1,13 @@
 module YouTube
   class Video
-    attr_reader :thumbnail, :title, :description, :id
+    attr_reader :thumbnail, :title, :description, :id, :position
 
     def initialize(data = {})
       @title = data[:snippet][:title]
       @description = data[:snippet][:description]
       @thumbnail = data[:snippet][:thumbnails][:high][:url]
       @id = data[:id]
+      @position = data[:position]
     end
 
     def self.by_id(id)
@@ -15,8 +16,9 @@ module YouTube
 
     def self.import_from_playlist(playlist_id)
       videos = YouTubeService.new.playlist_items(playlist_id)
-      videos[:items].map do |video_hash|
+      videos[:items].map.with_index do |video_hash, index|
         video_hash[:id] = video_hash[:snippet][:resourceId][:videoId]
+        video_hash[:position] = index
         YouTube::Video.new(video_hash)
       end
     end
