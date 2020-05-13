@@ -1,4 +1,4 @@
 Hello <%=@user.first_name%>!
 
-Please activate your account
-click here to activate: <%= button_to "Activate account", user_url(@user), method: :patch%>
+<p>Please activate your account</p>
+<p>click here to activate: </p> <%= link_to "Activate account", confirm_email_user_url(@user.email_token) %>
