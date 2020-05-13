@@ -20,6 +20,7 @@ class Tutorial < ApplicationRecord
         description: yt_video.description,
         thumbnail: yt_video.thumbnail,
         video_id: yt_video.id,
+        position: yt_video.position,
         tutorial: @tutorial
       )
     end
