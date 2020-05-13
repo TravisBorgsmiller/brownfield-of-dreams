@@ -1,0 +1,4 @@
+Hello <%=@user.first_name%>!
+
+Please activate your account
+click here to activate: <%= button_to "Activate account", user_url(@user), method: :patch%>
