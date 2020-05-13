@@ -11,5 +11,6 @@ RSpec.describe "User", type: :request do
     user.reload
 
     expect(user.active).to eq(true)
+    expect(user.email_token).to eq(nil)
   end
 end
