@@ -22,7 +22,7 @@ class User < ApplicationRecord
   end
 
   def email_activate
-    self.update(active: true, email_token: nil)
+    update(active: true, email_token: nil)
   end
 
   private
