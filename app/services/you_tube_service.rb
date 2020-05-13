@@ -12,7 +12,7 @@ class YouTubeService
   end
 
   def playlist_items(playlist_id)
-    params = {part: 'snippet', maxResults: 50, playlistId: playlist_id}
+    params = { part: 'snippet', maxResults: 50, playlistId: playlist_id }
     data = get_json('youtube/v3/playlistItems', params)
     return unless data[:nextPageToken]
 
