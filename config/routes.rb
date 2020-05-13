@@ -42,10 +42,12 @@ Rails.application.routes.draw do
   get '/video', to: 'video#show'
 
   resources :users, only: [:new, :create, :update, :edit] do
-    member do
-      get :confirm_email
-    end
+    # member do
+    #   get :confirm_email
+    # end
   end
+
+  resources :email_activations, only: [:show]
 
   resources :tutorials, only: [:show, :index] do
     resources :videos, only: [:show, :index]

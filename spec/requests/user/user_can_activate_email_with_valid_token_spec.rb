@@ -6,7 +6,7 @@ RSpec.describe "User", type: :request do
 
     expect(user.active).to eq(false)
 
-    get "/users/#{user.email_token}/confirm_email"
+    get email_activation_url(user.email_token)
 
     user.reload
 
@@ -19,7 +19,7 @@ RSpec.describe "User", type: :request do
 
     expect(user.active).to eq(false)
 
-    get "/users/#{SecureRandom.urlsafe_base64.to_s}/confirm_email"
+    get email_activation_url(SecureRandom.urlsafe_base64.to_s)
 
     user.reload
 
