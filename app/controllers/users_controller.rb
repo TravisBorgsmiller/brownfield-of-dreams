@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   def show
+    @bookmarks = current_user.prepare_bookmarks
     return unless gh_token
 
     @repos = GitHub::Repo.list_recent(gh_token)
