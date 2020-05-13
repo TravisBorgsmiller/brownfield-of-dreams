@@ -12,7 +12,7 @@ describe 'A registered user' do
 
     expect {
       click_on 'Bookmark'
-    }.to change { UserVideo.length }.by(1)
+    }.to change { UserVideo.count }.by(1)
 
     expect(page).to have_content("Bookmark added to your dashboard")
   end
