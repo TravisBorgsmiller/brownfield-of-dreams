@@ -14,12 +14,13 @@ RSpec.describe "An Admin" do
       click_link('View it here')
       expect(current_path).to eq(tutorial_path(Tutorial.last))
       within('.tutorials') do
-        expect(page.all('li')[0]).to have_content('Final Fantasy VII Remake (dunkview)')
-        expect(page.all('li')[1]).to have_content('Animal Crossing : New Horizons (dunkview)')
-        expect(page.all('li')[2]).to have_content('Shenmue 3')
-        expect(page.all('li')[3]).to have_content('COVID-19 Safety Video')
-        expect(page.all('li')[4]).to have_content('Dreams')
-        expect(page.all('li')[5]).to have_content('Videogame Structure Evolution')
+        expect(page.all('li')[0]).to have_content('Spoiler Alert')
+        expect(page.all('li')[1]).to have_content('Final Fantasy VII Remake (dunkview)')
+        expect(page.all('li')[2]).to have_content('Animal Crossing : New Horizons (dunkview)')
+        expect(page.all('li')[3]).to have_content('Shenmue 3')
+        expect(page.all('li')[4]).to have_content('COVID-19 Safety Video')
+        expect(page.all('li')[5]).to have_content('Dreams')
+        expect(page.all('li')[6]).to have_content('Videogame Structure Evolution')
       end
     end
   end
