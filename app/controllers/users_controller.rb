@@ -16,11 +16,23 @@ class UsersController < ApplicationController
     if @user.save
       session[:user_id] = @user.id
       flash[:success] = "Logged in as #{@user.first_name}"
-      RegistrationMailer.activate(current_user).deliver_now
+      RegistrationMailer.activate(@user).deliver_now
       redirect_to dashboard_path
     else
       flash[:error] = @user.errors.full_messages.to_sentence
       render :new
+    end
+  end
+
+  def confirm_email
+    user = User.find_by(email_token: params[:id])
+    if user
+      user.email_activate
+      flash[:success] = "Your email has been confirmed. Please sign in to continue."
+      redirect_to login_path
+    else
+      flash[:error] = "Sorry this user does not exist"
+      redirect_to root_path
     end
   end
 
