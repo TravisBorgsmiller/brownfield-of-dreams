@@ -8,6 +8,8 @@ class User < ApplicationRecord
   validates :password, presence: true, on: :create
   validates :first_name, presence: true
 
+  before_create :generate_email_token
+
   enum role: { default: 0, admin: 1 }
 
   has_secure_password
@@ -17,5 +19,15 @@ class User < ApplicationRecord
     return false if user.nil?
 
     friends.exclude?(user)
+  end
+
+  def email_activate
+    self.update(active: true, email_token: nil)
+  end
+
+  private
+
+  def generate_email_token
+    self.email_token = SecureRandom.urlsafe_base64.to_s
   end
 end
