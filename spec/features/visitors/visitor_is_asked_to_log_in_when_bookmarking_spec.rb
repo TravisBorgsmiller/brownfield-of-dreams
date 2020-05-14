@@ -7,7 +7,7 @@ describe 'visitor visits video show page' do
 
     visit tutorial_path(tutorial)
 
-    within('.bookmarks-btn') do
+    within("#with_video") do
       expect(page).to have_button('Bookmark', disabled: true, title: "You must be logged in to bookmark videos")
     end
   end
