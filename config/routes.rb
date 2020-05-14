@@ -49,8 +49,8 @@ Rails.application.routes.draw do
     resources :videos, only: [:show, :index]
   end
 
-  resources :user_videos, only:[:create, :destroy]
+  resources :user_videos, only: [:create, :destroy]
   post '/registration', to: 'registration#create'
-  get '/invite', to: 'invite#new'
-  post '/invite', to: 'invite#create'
+
+  resources :invitations, only: [:new, :create]
 end
