@@ -42,7 +42,7 @@ class Admin::TutorialsController < Admin::BaseController
 
   def manual_tutorial
     @tutorial = Tutorial.new(tutorial_params)
-    Video.import_from_yt(params[:video_id], @tutorial) if params[:video_id]
+    Video.import_from_yt(video_id, @tutorial) unless video_id.nil?
     if @tutorial.save
       flash[:success] = 'Successfully created tutorial.'
       redirect_to tutorial_path(@tutorial)
@@ -57,5 +57,9 @@ class Admin::TutorialsController < Admin::BaseController
     flash[:success] = "Successfully created tutorial. \
       #{view_context.link_to 'View it here', tutorial_path(tutorial)}."
     redirect_to admin_dashboard_path
+  end
+
+  def video_id
+    params[:videos][:video_id]
   end
 end
