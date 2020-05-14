@@ -1,4 +1,4 @@
-Hello <%=@user.first_name%>!
+Hello <%=@user.first_name%>,
 
-Please activate your account
-click here to activate: <%= link_to "Activate account", email_activation_url(@user.email_token) %>
+Please activate your account.
+Click here to activate: <%= link_to "Activate account", email_activation_url(@user.email_token) %>
