@@ -25,6 +25,13 @@ class User < ApplicationRecord
     update(active: true, email_token: nil)
   end
 
+  def bookmarks
+    videos.order(:position).each_with_object({}) do |video, acc|
+      acc[video.tutorial_id] = [] if acc[video.tutorial_id].nil?
+      acc[video.tutorial_id] << video
+    end
+  end
+
   private
 
   def generate_email_token

@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   def show
+    @bookmarks = current_user.bookmarks
     return unless gh_token
 
     @repos = GitHub::Repo.list_recent(gh_token)
@@ -21,19 +22,6 @@ class UsersController < ApplicationController
     else
       flash[:error] = @user.errors.full_messages.to_sentence
       render :new
-    end
-  end
-
-  def confirm_email
-    user = User.find_by(email_token: params[:id])
-    if user
-      user.email_activate
-      flash[:success] = 'Your email has been confirmed. \
-        Please sign in to continue.'
-      redirect_to login_path
-    else
-      flash[:error] = 'Sorry this user does not exist'
-      redirect_to root_path
     end
   end
 

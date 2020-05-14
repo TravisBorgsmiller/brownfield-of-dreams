@@ -12,11 +12,23 @@
     <li> <%= current_user.first_name  %> <%= current_user.last_name %> </li>
     <li> <%= current_user.email%> </li>
   </ul>
-  <section>
-    <h1>Bookmarked Segments</h1>
-  </section>
+  <% unless @bookmarks.empty? %>
+    <section id="bookmarks">
+      <h1>Bookmarked Segments</h1>
+      <% @bookmarks.each do |tutorial_id, videos| %>
+        <section id="tutorial-<%= tutorial_id %>">
+        <h3>Tutorial #<%= tutorial_id %></h3>
+        <ul>
+        <% videos.each do |video| %>
+          <li> <%= link_to video.title, video_path(video) %> </li>
+        <% end %>
+        </ul>
+        </section>
+      <% end %>
+    </section>
+  <% end %>
   <section id="github">
-    <h3>GitHub</h3>
+    <h1>GitHub</h1>
     <% if gh_token %>
       <section id="github-repos">
         <h3>Repos</h3>
