@@ -14,7 +14,7 @@ describe "As an admin" do
         fill_in :tutorial_thumbnail, with: "https://pbs.twimg.com/profile_images/669238564543041536/F8oJKPUG_400x400.jpg"
 
         click_button "Save"
-        save_and_open_page
+        
         tutorial = Tutorial.last
 
         expect(current_path).to eq(tutorial_path(tutorial.id))
