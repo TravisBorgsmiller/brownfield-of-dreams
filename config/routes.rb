@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   get '/register', to: 'users#new'
 
   get '/auth/github', as: :github_login
-  get '/auth/github/callback', to: 'git_hub_sessions#create'
+  get '/auth/github/callback', to: 'users#update'
 
   resources :friendships, only: [:create]
 
@@ -49,8 +49,8 @@ Rails.application.routes.draw do
     resources :videos, only: [:show, :index]
   end
 
-  resources :user_videos, only:[:create, :destroy]
+  resources :user_videos, only: [:create, :destroy]
   post '/registration', to: 'registration#create'
-  get '/invite', to: 'invite#new'
-  post '/invite', to: 'invite#create'
+
+  resources :invitations, only: [:new, :create]
 end

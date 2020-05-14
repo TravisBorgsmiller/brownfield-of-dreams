@@ -1,7 +1,8 @@
 class UsersController < ApplicationController
   def show
     @bookmarks = current_user.bookmarks
-    return unless gh_token
+    gh_token = current_user.gh_token
+    return if gh_token.nil?
 
     @repos = GitHub::Repo.list_recent(gh_token)
     @followers = GitHub::Follower.list_all(gh_token)
@@ -25,9 +26,22 @@ class UsersController < ApplicationController
     end
   end
 
+  def update
+    current_user.update(gh_token: retrieve_token, gh_uid: retrieve_uid)
+    redirect_to dashboard_path
+  end
+
   private
 
   def user_params
     params.require(:user).permit(:email, :first_name, :last_name, :password)
+  end
+
+  def retrieve_token
+    request.env['omniauth.auth']['credentials']['token']
+  end
+
+  def retrieve_uid
+    request.env['omniauth.auth']['uid']
   end
 end

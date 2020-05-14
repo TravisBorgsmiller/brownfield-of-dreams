@@ -13,9 +13,9 @@ RSpec.describe "As a logged in user" do
 
           click_button 'Send an Invite'
 
-          expect(current_path).to eq('/invite')
+          expect(current_path).to eq(new_invitation_path)
 
-          fill_in :github_handle, with: 'TravisBorgsmiller'
+          fill_in :handle, with: 'TravisBorgsmiller'
 
           expect do
             click_button 'Send Invite'
@@ -39,9 +39,9 @@ RSpec.describe "As a logged in user" do
 
           click_button 'Send an Invite'
 
-          expect(current_path).to eq('/invite')
+          expect(current_path).to eq(new_invitation_path)
 
-          fill_in :github_handle, with: 'alex-latham'
+          fill_in :handle, with: 'alex-latham'
 
           click_button 'Send Invite'
 
@@ -61,13 +61,13 @@ RSpec.describe "As a logged in user" do
 
           click_button 'Send an Invite'
 
-          expect(current_path).to eq('/invite')
+          expect(current_path).to eq(new_invitation_path)
 
-          fill_in :github_handle, with: 'invalidghuserhandlefr123445'
+          fill_in :handle, with: 'invalidghuserhandlefr123445'
 
           click_button 'Send Invite'
 
-          expect(page).to have_content("Couldn't locate Github user with that handle.")
+          expect(page).to have_content("Could not locate GitHub user with that handle.")
           expect(page).to have_button 'Send Invite'
         end
       end

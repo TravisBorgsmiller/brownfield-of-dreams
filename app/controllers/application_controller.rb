@@ -11,8 +11,6 @@ class ApplicationController < ActionController::Base
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
   end
 
-  delegate :gh_token, to: :current_user
-
   def four_oh_four
     render file: '/public/404'
   end

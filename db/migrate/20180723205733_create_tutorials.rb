@@ -5,7 +5,7 @@ class CreateTutorials < ActiveRecord::Migration[5.2]
       t.text :description
       t.string :thumbnail
       t.string :playlist_id
-      t.boolean :classroom, default: false
+      t.boolean :classroom, default: true
 
       t.timestamps
     end

@@ -5,7 +5,6 @@ class GitHubService
 
   def repos
     params = { sort: 'updated' }
-
     get_json('/user/repos', params)
   end
 
@@ -17,8 +16,8 @@ class GitHubService
     get_json('/user/following')
   end
 
-  def get_user(gh_handle)
-    get_json("/users/#{gh_handle}")
+  def get_user(handle)
+    get_json("/users/#{handle}")
   end
 
   private
