@@ -6,17 +6,8 @@ class Admin::TutorialsController < Admin::BaseController
   def create
     if params[:commit] == 'Save'
       @tutorial = Tutorial.create(tutorial_params)
-      if @tutorial.save
-        flash[:success] = "Successfully created tutorial."
-        redirect_to tutorial_path(@tutorial.id)
-      else
-        flash[:error] = "Tutorial was not successfully created. " + @tutorial.errors.full_messages.to_sentence
-        render :new
-      end
+      manual_tutorial
     else
-
-      return unless tutorial_params[:playlist_id]
-
       tutorial = Tutorial.import_from_playlist(tutorial_params[:playlist_id])
       flash[:success] = "Successfully created tutorial. \
         #{view_context.link_to 'View it here', tutorial_path(tutorial)}."
@@ -46,6 +37,21 @@ class Admin::TutorialsController < Admin::BaseController
   private
 
   def tutorial_params
-    params.require(:tutorial).permit(:tag_list, :playlist_id, :title, :description, :thumbnail)
+    params.require(:tutorial).permit(:tag_list, \
+                                     :playlist_id, \
+                                     :title, \
+                                     :description, \
+                                     :thumbnail)
+  end
+
+  def manual_tutorial
+    if @tutorial.save
+      flash[:success] = 'Successfully created tutorial.'
+      redirect_to tutorial_path(@tutorial.id)
+    else
+      flash[:error] = 'Tutorial was not successfully created. ' \
+      + @tutorial.errors.full_messages.to_sentence
+      render :new
+    end
   end
 end
