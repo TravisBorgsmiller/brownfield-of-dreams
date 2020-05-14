@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   get '/register', to: 'users#new'
 
   get '/auth/github', as: :github_login
-  get '/auth/github/callback', to: 'git_hub_sessions#create'
+  get '/auth/github/callback', to: 'users#update'
 
   resources :friendships, only: [:create]
 
