@@ -2,9 +2,9 @@ class InvitationsController < ApplicationController
   def new; end
 
   def create
-    friend = GitHubService.new(current_user.gh_token).get_user(params[:github_handle])
+    friend = GitHubService.new(current_user.gh_token).get_user(params[:handle])
     if friend[:message] == 'Not Found'
-      flash[:error] = 'Could not locate Github user with that handle.'
+      flash[:error] = 'Could not locate GitHub user with that handle.'
       render :new
     elsif friend[:email].nil?
       no_public_email
