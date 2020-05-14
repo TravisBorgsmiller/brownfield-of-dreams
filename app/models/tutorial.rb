@@ -3,7 +3,7 @@ class Tutorial < ApplicationRecord
            inverse_of: :tutorial, dependent: :destroy
   acts_as_taggable_on :tags, :tag_list
   accepts_nested_attributes_for :videos
-  validates :title, :description, :thumbnail, presence: true 
+  validates :title, :thumbnail, presence: true
 
   def self.import_from_playlist(playlist_id)
     yt_playlist = YouTube::Playlist.import(playlist_id)
