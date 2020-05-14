@@ -5,13 +5,9 @@ class Admin::TutorialsController < Admin::BaseController
 
   def create
     if params[:commit] == 'Save'
-      @tutorial = Tutorial.create(tutorial_params)
       manual_tutorial
     else
-      tutorial = Tutorial.import_from_playlist(tutorial_params[:playlist_id])
-      flash[:success] = "Successfully created tutorial. \
-        #{view_context.link_to 'View it here', tutorial_path(tutorial)}."
-      redirect_to admin_dashboard_path
+      import_tutorial
     end
   end
 
@@ -30,28 +26,36 @@ class Admin::TutorialsController < Admin::BaseController
 
   def destroy
     tutorial = Tutorial.find(params[:id])
-    flash[:success] = "#{tutorial.title} tagged!" if tutorial.destroy
+    flash[:success] = "#{tutorial.title} deleted!" if tutorial.destroy
     redirect_to admin_dashboard_path
   end
 
   private
 
   def tutorial_params
-    params.require(:tutorial).permit(:tag_list, \
-                                     :playlist_id, \
-                                     :title, \
-                                     :description, \
+    params.require(:tutorial).permit(:tag_list,
+                                     :playlist_id,
+                                     :title,
+                                     :description,
                                      :thumbnail)
   end
 
   def manual_tutorial
+    @tutorial = Tutorial.new(tutorial_params)
+    Video.import_from_yt(params[:video_id], @tutorial) if params[:video_id]
     if @tutorial.save
       flash[:success] = 'Successfully created tutorial.'
-      redirect_to tutorial_path(@tutorial.id)
+      redirect_to tutorial_path(@tutorial)
     else
-      flash[:error] = 'Tutorial was not successfully created. ' \
-      + @tutorial.errors.full_messages.to_sentence
+      flash[:error] = @tutorial.errors.full_messages.to_sentence
       render :new
     end
+  end
+
+  def import_tutorial
+    tutorial = Tutorial.import_from_playlist(tutorial_params[:playlist_id])
+    flash[:success] = "Successfully created tutorial. \
+      #{view_context.link_to 'View it here', tutorial_path(tutorial)}."
+    redirect_to admin_dashboard_path
   end
 end
