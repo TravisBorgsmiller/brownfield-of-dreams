@@ -1,4 +1,4 @@
 <p>Hello <%=@user.first_name%>,</p>
 
 <p>Please activate your account.</p>
-<p>Click here to activate: <%= link_to "Activate account", email_activation_url(@user.email_token) %></p>
+<p>Click here to activate: <%= link_to "Activate account", email_activation_url(@user.email_token, port: 3000) %></p>
