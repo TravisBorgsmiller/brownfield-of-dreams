@@ -54,7 +54,7 @@ ActiveRecord::Schema.define(version: 2020_05_13_005208) do
     t.text "description"
     t.string "thumbnail"
     t.string "playlist_id"
-    t.boolean "classroom", default: false
+    t.boolean "classroom", default: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
