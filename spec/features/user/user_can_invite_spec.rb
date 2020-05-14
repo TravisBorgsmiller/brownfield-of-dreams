@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe "As a logged in user" do
   describe "I can send an email to invite someone" do
     describe "by entering their github username on my dashboard" do
-      xscenario "if they have an email in github" do
+      scenario "if they have an email in github" do
         user = create(:user, gh_token: ENV["GITHUB_TOKEN2"])
 
         allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
@@ -26,7 +26,7 @@ RSpec.describe "As a logged in user" do
         expect(page).to have_content('Successfully sent invite!')
       end
 
-      xscenario "Fails gracefully if no github email present" do
+      scenario "Fails gracefully if no github email present" do
         user = create(:user, gh_token: ENV["GITHUB_TOKEN2"])
 
         allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
