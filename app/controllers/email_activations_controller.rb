@@ -2,7 +2,7 @@ class EmailActivationsController < ApplicationController
   def show
     user = User.find_by(email_token: params[:id])
     if user
-      user.email_activate
+      user.activate_email
       flash[:success] = 'Your email has been confirmed. \
         Please sign in to continue.'
       redirect_to login_path

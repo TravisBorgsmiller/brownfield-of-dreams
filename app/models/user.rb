@@ -21,7 +21,7 @@ class User < ApplicationRecord
     friends.exclude?(user)
   end
 
-  def email_activate
+  def activate_email
     update(active: true, email_token: nil)
   end
 
