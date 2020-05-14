@@ -1,3 +1,11 @@
+#=======#
+# RESET #
+#=======#
+
+User.destroy_all
+Video.destroy_all
+Tutorial.destroy_all
+
 #==================#
 # PREWORK TUTORIAL #
 #==================#
@@ -145,8 +153,6 @@ m3_tutorial.videos.create!({
 #=======#
 # USERS #
 #=======#
-
-User.destroy_all
 
 User.create!(
   email:      'admin@example.com',
