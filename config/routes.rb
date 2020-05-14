@@ -41,11 +41,7 @@ Rails.application.routes.draw do
   # Is this being used?
   get '/video', to: 'video#show'
 
-  resources :users, only: [:new, :create, :update, :edit] do
-    # member do
-    #   get :confirm_email
-    # end
-  end
+  resources :users, only: [:new, :create, :update, :edit]
 
   resources :email_activations, only: [:show]
 
