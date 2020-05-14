@@ -4,64 +4,72 @@ RSpec.describe "As a logged in user" do
   describe "I can send an email to invite someone" do
     describe "by entering their github username on my dashboard" do
       scenario "if they have an email in github" do
-        user = create(:user, gh_token: ENV["GITHUB_TOKEN2"])
+        VCR.use_cassette('invite_valid_w_email') do
+          user = create(:user, gh_token: ENV["GITHUB_TOKEN2"])
 
-        allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
+          allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
 
-        visit dashboard_path
+          visit dashboard_path
 
-        click_button 'Send an Invite'
+          click_button 'Send an Invite'
 
-        expect(current_path).to eq('/invite')
+          expect(current_path).to eq('/invite')
 
-        fill_in :github_handle, with: 'TravisBorgsmiller'
+          fill_in :github_handle, with: 'TravisBorgsmiller'
 
-        expect do
-          click_button 'Send Invite'
-        end.
-        to change { ActionMailer::Base.deliveries.count }.by(1)
+          expect do
+            click_button 'Send Invite'
+          end.
+          to change { ActionMailer::Base.deliveries.count }.by(1)
 
-        expect(current_path).to eq(dashboard_path)
+          expect(current_path).to eq(dashboard_path)
 
-        expect(page).to have_content('Successfully sent invite!')
+          expect(page).to have_content('Successfully sent invite!')
+        end
       end
 
       scenario "Fails gracefully if no github email present" do
-        user = create(:user, gh_token: ENV["GITHUB_TOKEN2"])
+        VCR.use_cassette('invite_valid_wo_email') do
 
-        allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
+          user = create(:user, gh_token: ENV["GITHUB_TOKEN2"])
 
-        visit dashboard_path
+          allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
 
-        click_button 'Send an Invite'
+          visit dashboard_path
 
-        expect(current_path).to eq('/invite')
+          click_button 'Send an Invite'
 
-        fill_in :github_handle, with: 'alex-latham'
+          expect(current_path).to eq('/invite')
 
-        click_button 'Send Invite'
+          fill_in :github_handle, with: 'alex-latham'
 
-        expect(page).to have_content("The Github user you selected doesn't have an email address associated with their account.")
-        expect(page).to have_button 'Send Invite'
+          click_button 'Send Invite'
+
+          expect(page).to have_content("The Github user you selected doesn't have an email address associated with their account.")
+          expect(page).to have_button 'Send Invite'
+        end
       end
 
       scenario "I am alerted if I enter an invalid github handle" do
-        user = create(:user, gh_token: ENV["GITHUB_TOKEN2"])
+        VCR.use_cassette('invite_invalid_gh') do
 
-        allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
+          user = create(:user, gh_token: ENV["GITHUB_TOKEN2"])
 
-        visit dashboard_path
+          allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
 
-        click_button 'Send an Invite'
+          visit dashboard_path
 
-        expect(current_path).to eq('/invite')
+          click_button 'Send an Invite'
 
-        fill_in :github_handle, with: 'invalidghuserhandlefr123445'
+          expect(current_path).to eq('/invite')
 
-        click_button 'Send Invite'
+          fill_in :github_handle, with: 'invalidghuserhandlefr123445'
 
-        expect(page).to have_content("Couldn't locate Github user with that handle.")
-        expect(page).to have_button 'Send Invite'
+          click_button 'Send Invite'
+
+          expect(page).to have_content("Couldn't locate Github user with that handle.")
+          expect(page).to have_button 'Send Invite'
+        end
       end
     end
   end
