@@ -51,4 +51,6 @@ Rails.application.routes.draw do
 
   resources :user_videos, only:[:create, :destroy]
   post '/registration', to: 'registration#create'
+  get '/invite', to: 'invite#new'
+  post '/invite', to: 'invite#create'
 end

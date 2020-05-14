@@ -17,6 +17,10 @@ class GitHubService
     get_json('/user/following')
   end
 
+  def get_user(gh_handle)
+    get_json("/users/#{gh_handle}")
+  end
+
   private
 
   def get_json(url, params = nil)
