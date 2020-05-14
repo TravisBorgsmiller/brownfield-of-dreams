@@ -10,9 +10,11 @@ describe 'A registered user' do
 
     visit tutorial_path(tutorial)
 
-    expect {
-      click_on 'Bookmark'
-    }.to change { UserVideo.count }.by(1)
+    within("#with_video") do
+      expect {
+        click_on 'Bookmark'
+      }.to change { UserVideo.count }.by(1)
+    end
 
     expect(page).to have_content("Bookmark added to your dashboard")
   end
@@ -25,10 +27,13 @@ describe 'A registered user' do
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
 
     visit tutorial_path(tutorial)
-
-    click_on 'Bookmark'
+    within("#with_video") do
+      click_on 'Bookmark'
+    end
     expect(page).to have_content("Bookmark added to your dashboard")
-    click_on 'Bookmark'
+    within("#with_video") do
+      click_on 'Bookmark'
+    end
     expect(page).to have_content("Already in your bookmarks")
   end
 end
