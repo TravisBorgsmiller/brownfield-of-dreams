@@ -24,20 +24,7 @@ class UsersController < ApplicationController
       render :new
     end
   end
-
-  def confirm_email
-    user = User.find_by(email_token: params[:id])
-    if user
-      user.email_activate
-      flash[:success] = 'Your email has been confirmed. \
-        Please sign in to continue.'
-      redirect_to login_path
-    else
-      flash[:error] = 'Sorry this user does not exist'
-      redirect_to root_path
-    end
-  end
-
+  
   private
 
   def user_params
