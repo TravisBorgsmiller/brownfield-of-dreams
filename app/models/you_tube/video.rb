@@ -7,7 +7,7 @@ module YouTube
       @description = data[:snippet][:description]
       @thumbnail = data[:snippet][:thumbnails][:high][:url]
       @id = data[:id]
-      @position = data[:position]
+      @position = data[:position] || 0
     end
 
     def self.by_id(id)
